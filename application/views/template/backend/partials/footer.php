@@ -1,51 +1,106 @@
+<script>
+	$('#confirm-delete').on('show.bs.modal', function(e) {
+		$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+	});
+</script>
 
-<!-- Footer -->
-<footer class="main">
-	
-		
-	&copy; Skripsi 2019 <strong>SPK</strong> Penentuan Perawat Terbaik
-	
-</footer>	
+<!-- Custom template | don't include it in your project! -->
+<div class="custom-template">
+	<div class="title">Settings</div>
+	<div class="custom-content">
+		<div class="switcher">
+			<div class="switch-block">
+				<h4>Topbar</h4>
+				<div class="btnSwitch">
+					<button type="button" class="changeMainHeaderColor" data-color="blue"></button>
+					<button type="button" class="selected changeMainHeaderColor" data-color="purple"></button>
+					<button type="button" class="changeMainHeaderColor" data-color="light-blue"></button>
+					<button type="button" class="changeMainHeaderColor" data-color="green"></button>
+					<button type="button" class="changeMainHeaderColor" data-color="orange"></button>
+					<button type="button" class="changeMainHeaderColor" data-color="red"></button>
+				</div>
+			</div>
+			<div class="switch-block">
+				<h4>Background</h4>
+				<div class="btnSwitch">
+					<button type="button" class="changeBackgroundColor" data-color="bg2"></button>
+					<button type="button" class="changeBackgroundColor selected" data-color="bg1"></button>
+					<button type="button" class="changeBackgroundColor" data-color="bg3"></button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="custom-toggle">
+		<i class="flaticon-settings"></i>
+	</div>
 </div>
-	<link rel="stylesheet" href="<?= base_url() ?>assets/js/jvectormap/jquery-jvectormap-1.2.2.css">
-	<link rel="stylesheet" href="<?= base_url() ?>assets/js/rickshaw/rickshaw.min.css">
+<!-- End Custom template -->
+</div>
+</div>
+<!--   Core JS Files   -->
+<script src="<?= base_url() ?>assets/js/core/jquery.3.2.1.min.js"></script>
+<script src="<?= base_url() ?>assets/js/core/popper.min.js"></script>
+<script src="<?= base_url() ?>assets/js/core/bootstrap.min.js"></script>
 
-	<!-- Bottom Scripts -->
-	<script src="<?= base_url() ?>assets/js/jquery-1.11.0.min.js"></script>
-	<script src="<?= base_url() ?>assets/js/gsap/main-gsap.js"></script>
-	<script src="<?= base_url() ?>assets/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js"></script>
-	
-	<script src="<?= base_url() ?>assets/js/bootstrap.js"></script>
-	<script src="<?= base_url() ?>assets/js/joinable.js"></script>
-	<script src="<?= base_url() ?>assets/js/resizeable.js"></script>
-	<script src="<?= base_url() ?>assets/js/neon-api.js"></script>
-	<script src="<?= base_url() ?>assets/js/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-	<script src="<?= base_url() ?>assets/js/jvectormap/jquery-jvectormap-europe-merc-en.js"></script>
-	<script src="<?= base_url() ?>assets/js/jquery.sparkline.min.js"></script>
-	<script src="<?= base_url() ?>assets/js/rickshaw/vendor/d3.v3.js"></script>
-	<script src="<?= base_url() ?>assets/js/rickshaw/rickshaw.min.js"></script>
-	<script src="<?= base_url() ?>assets/js/raphael-min.js"></script>
-	<script src="<?= base_url() ?>assets/js/morris.min.js"></script>
-	<script src="<?= base_url() ?>assets/js/toastr.js"></script>
-	<script src="<?= base_url() ?>assets/js/neon-chat.js"></script>
-	<script src="<?= base_url() ?>assets/js/neon-custom.js"></script>
-	<script src="<?= base_url() ?>assets/js/neon-demo.js"></script>
-	<script src="<?= base_url() ?>assets/js/fileinput.js"></script>
+<!-- jQuery UI -->
+<script src="<?= base_url() ?>assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+<script src="<?= base_url() ?>assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
 
+<!-- jQuery Scrollbar -->
+<script src="<?= base_url() ?>assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+
+<!-- Moment JS -->
+<script src="<?= base_url() ?>assets/js/plugin/moment/moment.min.js"></script>
+
+<!-- Chart JS -->
+<script src="<?= base_url() ?>assets/js/plugin/chart.js/chart.min.js"></script>
+
+<!-- jQuery Sparkline -->
+<script src="<?= base_url() ?>assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
+
+<!-- Chart Circle -->
+<script src="<?= base_url() ?>assets/js/plugin/chart-circle/circles.min.js"></script>
+
+<!-- Datatables -->
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="<?= base_url() ?>assets/js/plugin/datatables/datatables.min.js"></script>
+<!-- Datatables -->
+<script src="<?= base_url() ?>assets/js/plugin/datatables/datatables.min.js"></script>
+
+
+<!-- Bootstrap Toggle -->
+<script src="<?= base_url() ?>assets/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
+
+<!-- jQuery Vector Maps -->
+<script src="<?= base_url() ?>assets/js/plugin/jqvmap/jquery.vmap.min.js"></script>
+<script src="<?= base_url() ?>assets/js/plugin/jqvmap/maps/jquery.vmap.world.js"></script>
+
+<!-- Google Maps Plugin -->
+<script src="<?= base_url() ?>assets/js/plugin/gmaps/gmaps.js"></script>
+
+<!-- Sweet Alert -->
+<script src="<?= base_url() ?>assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+
+<!-- Azzara JS -->
+<script src="<?= base_url() ?>assets/js/ready.min.js"></script>
+
+<!-- Azzara DEMO methods, don't include it in your project! -->
+<script src="<?= base_url() ?>assets/js/setting-demo.js"></script>
+<script src="<?= base_url() ?>assets/js/demo.js"></script>
 
 <!-- modal hapus -->
 <div class="modal fade" id="confirm-delete">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			
+
 			<div class="modal-header">
 				<h4 class="modal-title">Konfirmasi!</h4>
 			</div>
-			
+
 			<div class="modal-body">
 				Yakin ingin menghapus data ini ?
 			</div>
-			
+
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
 				<a class="btn btn-danger btn-ok">Hapus saja</a>
@@ -54,11 +109,5 @@
 	</div>
 </div>
 </body>
+
 </html>
-
-
-<script>
-$('#confirm-delete').on('show.bs.modal', function(e) {
-    $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
-});
-</script>
