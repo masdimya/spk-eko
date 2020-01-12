@@ -42,15 +42,15 @@
                     ?>
             <tr>
     			<td width="80px"><?php echo ++$start ?></td>
-    			<td><?php echo $sekolah->nama_perawat ?></td>
-    			<td><?php echo $sekolah->dep_jabatan ?></td>
+    			<td><?php echo $sekolah->nama_pemain ?></td>
+    			<td><?php echo $sekolah->posisi ?></td>
     			<td style="text-align:center" width="200px">
     				<?php 
-    				echo anchor(site_url('sekolah/read/'.$sekolah->id_perawat),'Read', array('class'=>'btn btn-primary btn-sm')); 
+    				echo anchor(site_url('sekolah/read/'.$sekolah->id_pemain),'Read', array('class'=>'btn btn-primary btn-sm')); 
     				echo ' | '; 
-    				echo anchor(site_url('sekolah/update/'.$sekolah->id_perawat),'Update', array('class'=>'btn btn-default btn-sm')); 
+    				echo anchor(site_url('sekolah/update/'.$sekolah->id_pemain),'Update', array('class'=>'btn btn-default btn-sm')); 
     				echo ' | '; 
-    				echo anchor(site_url('sekolah/delete/'.$sekolah->id_perawat),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
+    				echo anchor(site_url('sekolah/delete/'.$sekolah->id_pemain),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
     				?>
     			</td>
 		  </tr>

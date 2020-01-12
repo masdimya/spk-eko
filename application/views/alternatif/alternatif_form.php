@@ -14,7 +14,7 @@
 				if (!empty($sekolah)) {
 					foreach ($sekolah as $s) {
 			 	?>
-			 	<option value='<?php echo $s->id_perawat ?>'><?php echo $s->nama_perawat ?></option>
+			 	<option value='<?php echo $s->id_pemain ?>'><?php echo $s->nama_pemain ?></option>
 			 	<?php }}else{ ?>
 				<option class="form-control"> Semua Nama Perawat sudah terdaftar</option>
 			 	<?php } ?>

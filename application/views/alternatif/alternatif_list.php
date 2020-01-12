@@ -38,7 +38,6 @@
                     <th>Nama Pemain</th>
                     <th>Posisi</th>
                     <th>Tanggal Bergabung</th>
-                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -50,15 +49,9 @@
                 ?>
                 <tr>
                     <td width="80px"><?php echo $no++ ?></td>
-                    <td><?php echo $alternatif->nama_perawat ?></td>
-                    <td><?php echo $alternatif->dep_jabatan ?></td>
+                    <td><?php echo $alternatif->nama_pemain ?></td>
+                    <td><?php echo $alternatif->posisi ?></td>
                     <td><?php echo $alternatif->tgl_bergabung ?></td>
-                    <td style="text-align:center" width="200px">
-                        <?= anchor('Alternatif/edit?alternatif='.$alternatif->id_alternatif, 'Edit',array('class'=>'btn btn-default btn-sm')); ?>
-                        <?= "|" ?>
-                        <!-- <?= anchor('Alternatif/hapus?alternatif='.$alternatif->id_alternatif, 'Hapus',array('class'=>'btn btn-danger btn-sm')); ?> -->
-                        <?= anchor('Alternatif/hapus?alternatif='.$alternatif->id_alternatif,'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); ?>
-                    </td>
                 </tr>
                 <?php }}else{ ?>
                 <tr>

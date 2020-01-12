@@ -19,7 +19,7 @@ class Alternatif extends CI_Controller
     function index()
     {
  
-    	$sql="SELECT alternatif.id_alternatif,sekolah.id_perawat,sekolah.nama_perawat,sekolah.dep_jabatan, sekolah.tgl_bergabung FROM alternatif LEFT JOIN sekolah ON alternatif.id_perawat = sekolah.id_perawat ";
+    	$sql="SELECT sekolah.* FROM sekolah INNER JOIN alternatif_nilai on sekolah.id_pemain = alternatif_nilai.id_pemain GROUP BY sekolah.id_pemain";
         $data['data']=$this->m_db->get_query_data($sql);
         $this->template->load('template/backend/dashboard', 'alternatif/alternatif_list', $data);
     }
@@ -55,9 +55,9 @@ class Alternatif extends CI_Controller
 				
 	        	
 			}else{
-
+			
 	        $daftar_nilai = $this->mod_alternatif->getnilai();
-
+			
 	        $d['sekolah']=$this->mod_sekolah->sekolah_data();
 	        $d['subkriteria']=$this->mod_kriteria->subkriteria_data();
 	        $d['option_nilai'] = "";
