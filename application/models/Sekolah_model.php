@@ -8,7 +8,7 @@ class Sekolah_model extends CI_Model
 
     public $table = 'sekolah';
     private $tb_sekolah='sekolah';
-    public $id = 'id_perawat';
+    public $id = 'id_pemain';
     public $order = 'DESC';
 
     function __construct()
@@ -17,7 +17,7 @@ class Sekolah_model extends CI_Model
         $this->load->library('m_db');
     }
 
-    function sekolah_data($where=array(),$order="nama_perawat ASC")
+    function sekolah_data($where=array(),$order="nama_pemain ASC")
     {
         $d=$this->m_db->get_data($this->tb_sekolah,$where,$order);
         return $d;
@@ -38,23 +38,24 @@ class Sekolah_model extends CI_Model
     
     // get total rows
     function total_rows($q = NULL) {
-        $this->db->like('id_perawat', $q);
-	$this->db->or_like('nama_perawat', $q);
-	$this->db->or_like('dep_jabatan', $q);
-	$this->db->or_like('tgl_bergabung', $q);
-	$this->db->or_like('tgl_evaluasi', $q);
-	$this->db->or_like('hasil_evaluasi', $q);
-	$this->db->or_like('target_evaluasi', $q);
-	$this->db->from($this->table);
+        
+        $this->db->like('id_pemain', $q);
+        $this->db->or_like('nama_pemain', $q);
+        $this->db->or_like('posisi', $q);
+        $this->db->or_like('tgl_bergabung', $q);
+        $this->db->or_like('tgl_evaluasi', $q);
+        $this->db->or_like('hasil_evaluasi', $q);
+        $this->db->or_like('target_evaluasi', $q);
+        $this->db->from($this->table);
         return $this->db->count_all_results();
     }
 
     // get data with limit and search
     function get_limit_data($limit, $start = 0, $q = NULL) {
         $this->db->order_by($this->id, $this->order);
-        $this->db->like('id_perawat', $q);
-	$this->db->or_like('nama_perawat', $q);
-	$this->db->or_like('dep_jabatan', $q);
+        $this->db->like('id_pemain', $q);
+	$this->db->or_like('nama_pemain', $q);
+	$this->db->or_like('posisi', $q);
 	$this->db->or_like('tgl_bergabung', $q);
 	$this->db->or_like('tgl_evaluasi', $q);
 	$this->db->or_like('hasil_evaluasi', $q);

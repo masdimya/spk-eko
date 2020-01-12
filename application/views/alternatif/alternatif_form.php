@@ -3,28 +3,13 @@
 	$(document).ready(function() {
 		$("select").select2();
 	});
-</script>
+
 
 <div class="main-panel" style="margin-top: -80px">
 	<div class="content">
 		<div class="page-inner">
 			<div class="page-header">
 				<h4 class="page-title">Kriteria Form</h4>
-				<!-- <div class="btn-group btn-group-page-header ml-auto">
-					<button type="button" class="btn btn-light btn-round btn-page-header-dropdown dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<i class="fa fa-ellipsis-h"></i>
-					</button>
-					<div class="dropdown-menu">
-						<div class="arrow"></div>
-						<a class="dropdown-item" href="#">Action</a>
-						<a class="dropdown-item" href="#">Another action</a>
-						<a class="dropdown-item" href="#">Something else here</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#">Separated link</a>
-					</div>
-				</div> -->
-			</div>
-
 
 			<div class="row row-card-no-pd">
 				<div class="col-md-12">

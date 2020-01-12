@@ -13,9 +13,15 @@ class Perbandingan extends CI_Controller
 		ceklogin();
     }
     
-     function banding()
+    function banding()
     {        
         $this->template->load('template/backend/dashboard', 'perbandingan/perbandingan_list');
+	}
+	function banding_parameter()
+    {        
+		$d['kriteria']=$this->mod_kriteria->kriteria_data();
+		var_dump($d['kriteria']);die;
+		$this->template->load('template/backend/dashboard', 'perbandingan/perbandingan_parameter',$d);
     }
 
     function gethtml()
