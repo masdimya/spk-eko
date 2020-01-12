@@ -1,84 +1,94 @@
-<?php $pag= $this->uri->segment(1); ?>
-<?php $page= $this->uri->segment(2); ?>
-<?php $pages= $this->uri->segment(3); ?>
-	<div class="sidebar-menu">
-		<header class="logo-env">
-			<!-- logo -->
-			<!-- <div class="logo">
-				<a href="index.html">
-					<img src="<?= base_url() ?>assets/images/logo-light.jpg" width="120" alt="" />
-				</a>
-			</div> -->
-
-
-			<!-- open/close menu icon (do not remove if you want to enable menu on mobile devices) -->
-			<div class="sidebar-mobile-menu visible-xs">
-				<a href="#" class="with-animation"><!-- add class "with-animation" to support animation -->
-					<i class="entypo-menu"></i>
-				</a>
-			</div>
-		</header>
-
-		<ul id="main-menu" class="">
-			<!-- add class "multiple-expanded" to allow multiple submenus to open -->
-			<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
-			<li><a href=" <?php echo base_url() ?> " target="_blank"><i class="entypo-monitor"></i><span>Halaman Depan</span></a></li>
-			<li <?php if($page=="Dashboard") echo 'class="active opened active" '; ?> ><?= anchor('admin/Dashboard','<i class=entypo-gauge></i><span>Dashboard</span>'); ?></li>
-			<li <?php if($pag =="Kriteria" || $pag =="kriteria" || $pag =="Subkriteria" || $pag =="subkriteria") echo 'class="active opened active multiple-expanded" '; ?>>
-				<a href="ui-panels.html">
-					<i class="entypo-layout"></i>
-					<span>Kriteria</span>
-				</a>
-				<ul>
-					<li <?php if($pag=="Kriteria" || $pag=="kriteria" ) echo 'class="active opened active multiple-expanded" '; ?>><?= anchor('Kriteria','<span class=entypo-layout>Kriteria</span>'); ?></li>
-					<li <?php if($pag=="Subkriteria" || $pag=="subkriteria") echo 'class="active opened active multiple-expanded" '; ?>><?= anchor('Subkriteria','<span class=entypo-menu> Subkriteria</span>'); ?></li>
-				</ul>
-			</li>
-			<li <?php if($pag=="sekolah" || $pag=="Sekolah") echo 'class="active opened active" '; ?>><?= anchor('Sekolah','<i class=entypo-doc-text></i><span>Perawat</span>'); ?></li>
-			<li <?php if($pag=="Alternatif" || $pag=="alternatif" || $page=="Banding" || $page=="banding" || $page=="Hasil" || $page=="hasil") echo 'class="active opened active multiple-expanded" '; ?>>
-				<a href="ui-panels.html">
-					<i class="entypo-book"></i>
-					<span>Perhitungan</span>
-				</a>
-				<ul>
-					<li <?php if($pag=="alternatif" || $pag=="Alternatif") echo 'class="active opened active multiple-expanded" '; ?>><?= anchor('Alternatif','<span class=entypo-direction>Alternatif</span>'); ?></li>
-					<li <?php if($page=="banding" || $page=="Banding") echo 'class="active opened active multiple-expanded" '; ?>><?= anchor('Perbandingan/banding','<span class=entypo-switch> Perbandingan</span>'); ?></li>
-					<li <?php if($page=="hasil" || $page=="Hasil") echo 'class="active opened active multiple-expanded" '; ?>><?= anchor('Perbandingan/hasil','<span class=entypo-chart-bar>Hasil Perhitungan</span>'); ?></li>
-				</ul>
-			</li>
-			<li <?php if($page=="pesan" || $page=="Pesan") echo 'class="active opened active" '; ?>><?= anchor('pesan','<i class=entypo-mail></i><span>Pesan</span>'); ?></li>
-			<li <?php if($page=="Auth" ||$page=="auth") echo 'class="active opened active multiple-expanded" '; ?>>
-				<a href="ui-panels.html">
-					<i class="entypo-tools"></i>
-					<span>Pengaturan</span>
-				</a>
-				<ul>
-					<li <?php if($page=="Auth" || $page=="auth") echo 'class="active opened active multiple-expanded" '; ?>><?= anchor('admin/Auth','<span class=entypo-user> Users</span>'); ?></li>
-				</ul>
-			</li>
-			<li><a href="javascript:;" onclick="jQuery('#modal-1').modal('show');"><i class="entypo-help"></i><span>Tentang</span></a></li>
-		</ul>
-
-	</div>
-	<!-- Modal 1 (Basic)-->
-	<div class="modal fade" id="modal-1">
-		<div class="modal-dialog">
-			<div class="modal-content">
-
-				<div class="modal-header">
-					<h4 class="modal-title">Tentang Website</h4>
+<?php $pag = $this->uri->segment(1); ?>
+<?php $page = $this->uri->segment(2); ?>
+<?php $pages = $this->uri->segment(3); ?>
+<!-- Sidebar -->
+<div class="sidebar">
+	<div class="sidebar-background"></div>
+	<div class="sidebar-wrapper scrollbar-inner">
+		<div class="sidebar-content">
+			<div class="user">
+				<div class="avatar-sm float-left mr-2">
+					<img src="<?= base_url() ?>assets/img/user.png" alt="..." class="avatar-img rounded-circle">
 				</div>
-
-				<div class="modal-body">
-					<strong>Tentang Website</strong><br>
-		            <i class="glyphicon glyphicon-ok"></i> Bismillah<br>
-		            <i class="glyphicon glyphicon-ok"></i> Skripsi<br>
-		            <i class="glyphicon glyphicon-ok"></i> Selesai dengan cepat<br>
-				</div>
-
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+				<div class="info">
+					<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
+						<span>
+							<?php
+							echo "Admin";
+							?>
+							<span class="user-level">Petugas Dispenduk</span>
+						</span>
+					</a>
+					<div class="clearfix"></div>
 				</div>
 			</div>
+			<ul class="nav">
+				<li <?php if ($page == "Dashboard") {
+						echo 'class="nav-item active" ';
+					} else {
+						echo 'class="nav-item" ';
+					} ?>>
+					<?= anchor('admin/Dashboard', '<i class="fas fa-home"></i><p>Dashboard</p>'); ?>
+
+				</li>
+
+				<li class="nav-section">
+					<span class="sidebar-mini-icon">
+						<i class="fa fa-ellipsis-h"></i>
+					</span>
+					<h4 class="text-section">Data Masuk</h4>
+				</li>
+
+				<li <?php if ($pag == "Kriteria" || $pag == "kriteria" || $pag == "Subkriteria" || $pag == "subkriteria") {
+						echo 'class="nav-item active" ';
+					} else {
+						echo 'class="nav-item" ';
+					} ?>>
+					<a data-toggle="collapse" href="#baseed">
+						<i class="fas fa-layer-group"></i>
+						<p>Kriteria</p>
+						<span class="caret"></span>
+					</a>
+
+					<div class="collapse" id="baseed">
+						<ul class="nav nav-collapse">
+							<li><?= anchor('Kriteria', '<span class="sub-item"><i class="fas fa-tasks"></i> Kriteria</span>'); ?></li>
+							<li><?= anchor('Subkriteria', '<span class="sub-item"><i class="fas fa-tasks"></i> Subkriteria</span>'); ?></li>
+						</ul>
+					</div>
+				</li>
+
+				<li <?php if ($pag == "sekolah" || $pag == "Sekolah") {
+						echo 'class="nav-item active" ';
+					} else {
+						echo 'class="nav-item" ';
+					} ?>>
+					<?= anchor('Sekolah', '<i class="fas fa-home"></i><p>Sekolah</p>'); ?>
+				</li>
+
+				<li <?php if ($pag == "Alternatif" || $pag == "alternatif" || $page == "Banding" || $page == "banding" || $page == "Hasil" || $page == "hasil") {
+						echo 'class="nav-item active" ';
+					} else {
+						echo 'class="nav-item" ';
+					} ?>>
+
+					<a data-toggle="collapse" href="#hitung">
+						<i class="fas fa-layer-group"></i>
+						<p>Perhitungan</p>
+						<span class="caret"></span>
+					</a>
+
+					<div class="collapse" id="hitung">
+						<ul class="nav nav-collapse">
+							<li><?= anchor('Alternatif', '<span class="sub-item"><i class="fas fa-tasks"></i> Alternatif</span>'); ?></li>
+							<li><?= anchor('Perbandingan/banding', '<span class="sub-item"><i class="fas fa-tasks"></i> Banding</span>'); ?></li>
+							<li><?= anchor('Perbandingan/hasil', '<span class="sub-item"><i class="fas fa-tasks"></i> Hasil</span>'); ?></li>
+						</ul>
+					</div>
+				</li>
+
+			</ul>
 		</div>
 	</div>
+</div>
+<!-- EndSidebar -->
