@@ -38,11 +38,11 @@ $('#map-example').vectorMap(
 	borderWidth: 2,
 	color: '#e4e4e4',
 	enableZoom: true,
-	hoverColor: '#35cd3a',
+	hoverColor: '#036933',
 	hoverOpacity: null,
 	normalizeFunction: 'linear',
 	scaleColors: ['#b6d6ff', '#005ace'],
-	selectedColor: '#35cd3a',
+	selectedColor: '#036933',
 	selectedRegions: ['ID', 'RU', 'US', 'AU', 'CN', 'BR'],
 	showTooltip: true,
 	onRegionClick: function(element, code, region)
@@ -259,7 +259,7 @@ var myTopProductsChart = new Chart(topProductsChart, {
 		"March",
 		"April"],
 		datasets:[ {
-			label: "Sales Analytics", fill: !0, backgroundColor: "rgba(53, 205, 58, 0.2)", borderColor: "#35cd3a", borderCapStyle: "butt", borderDash: [], borderDashOffset: 0, pointBorderColor: "#35cd3a", pointBackgroundColor: "#35cd3a", pointBorderWidth: 1, pointHoverRadius: 5, pointHoverBackgroundColor: "#35cd3a", pointHoverBorderColor: "#35cd3a", pointHoverBorderWidth: 1, pointRadius: 1, pointHitRadius: 5, data: [20, 10, 18, 15, 32, 18, 15, 22, 8, 6, 12, 13, 10, 18, 14, 24, 16, 12, 19, 21, 16, 14, 24, 21, 13, 15, 27, 29, 21, 11, 14, 19, 21, 17]
+			label: "Sales Analytics", fill: !0, backgroundColor: "rgba(53, 205, 58, 0.2)", borderColor: "#036933", borderCapStyle: "butt", borderDash: [], borderDashOffset: 0, pointBorderColor: "#036933", pointBackgroundColor: "#036933", pointBorderWidth: 1, pointHoverRadius: 5, pointHoverBackgroundColor: "#036933", pointHoverBorderColor: "#036933", pointHoverBorderWidth: 1, pointRadius: 1, pointHitRadius: 5, data: [20, 10, 18, 15, 32, 18, 15, 22, 8, 6, 12, 13, 10, 18, 14, 24, 16, 12, 19, 21, 16, 14, 24, 21, 13, 15, 27, 29, 21, 11, 14, 19, 21, 17]
 		}
 		]
 	},

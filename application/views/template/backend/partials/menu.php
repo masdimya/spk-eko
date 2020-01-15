@@ -16,7 +16,7 @@
 							<?php
 							echo "Admin";
 							?>
-							<span class="user-level">Petugas Dispenduk</span>
+							<span class="user-level">Pelatih</span>
 						</span>
 					</a>
 					<div class="clearfix"></div>
@@ -63,7 +63,7 @@
 					} else {
 						echo 'class="nav-item" ';
 					} ?>>
-					<?= anchor('Sekolah', '<i class="fas fa-home"></i><p>Sekolah</p>'); ?>
+					<?= anchor('Sekolah', '<i class="fas fa-home"></i><p>Pemain</p>'); ?>
 				</li>
 
 				<li <?php if ($pag == "Alternatif" || $pag == "alternatif" || $page == "Banding" || $page == "banding" || $page == "Hasil" || $page == "hasil") {

@@ -64,7 +64,7 @@ class Alternatif extends CI_Controller
 	        foreach ($daftar_nilai as $item) {
 	        	$d['option_nilai'].= '<option value="'.$item->nilai.'">'.$item->keterangan_nilai.'</option>';
 	        }
-
+			
 	        $this->template->load('template/backend/dashboard', 'alternatif/alternatif_form', $d);
 	    }
 		

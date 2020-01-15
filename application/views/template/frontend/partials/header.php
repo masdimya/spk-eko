@@ -9,7 +9,7 @@ $aktif = $this->uri->segment(2);
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-<title>Ranking Sekolah | rankingsekolah.com</title>
+<title>SPK Persebaya</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!-- css files -->
@@ -18,6 +18,7 @@ $aktif = $this->uri->segment(2);
 <link rel="stylesheet"  href="<?php echo base_url() ?>frontend/web/css/set2.css" />
 <link href="<?php echo base_url(); ?>frontend/web/css/imagelightbox.css" rel="stylesheet" >
 <link href="<?php echo base_url(); ?>frontend/web/css/style.css" rel="stylesheet"  media="all" />
+<link href="https://fonts.googleapis.com/css?family=Fjalla+One&display=swap" rel="stylesheet"> 
 <!-- /css files -->
 
 <script src="<?php echo base_url() ?>frontend/web/js/jquery-1.11.1.min.js"></script>
@@ -41,11 +42,7 @@ $aktif = $this->uri->segment(2);
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
-						<li <?php if($aktif=="" ) echo 'class="active"';?> ><a href="<?php echo base_url() ?>"><span data-hover="Beranda">Beranda</span></a></li>
-						<li <?php if($aktif=="tentang" ) echo 'class="active"';?> ><a href="about.html"><span data-hover="Tentang">Tentang</span></a><span class="line1">|</span></li>
-						<li <?php if($aktif=="ranking" || $aktif=="detail" ) echo 'class="active"';?> ><a href="<?php echo base_url() ?>Frontend/ranking"><span data-hover="Ranking">Ranking</span></a><span class="line1">|</span></li>
-						<li <?php if($aktif=="galeri" ) echo 'class="active"';?> ><a href="<?php echo base_url() ?>Frontend/galeri"><span data-hover="Galeri">Galeri</span></a><span class="line1">|</span></li>
-						<li <?php if($aktif=="kontak" ) echo 'class="active"';?> ><a href="contact.html"><span data-hover="Kontak">Kontak</span></a><span class="line1">|</span></li>
+						<li <?php if($aktif=="kontak" ) echo 'class="active"';?> ><a href="<?php echo base_url() ?>auth"><span data-hover="LOGIN">LOGIN</span></a><span class="line1"></span></li>
 					</ul>
 				</div>
 			</div>
@@ -58,20 +55,22 @@ $aktif = $this->uri->segment(2);
     <div class="jarallax callbacks_container w3-layouts">
       <ul class="rslides callbacks callbacks1 agileits" id="slider4">
         <li id="callbacks1_s1" class="" style="float: none; position: absolute; opacity: 0; z-index: 1; display: list-item; transition: opacity 500ms ease-in-out;">
-          <img src="<?php echo base_url() ?>frontend/web/images/header/header1.jpg" alt="home" />
-          <div class="caption text-center"><h3>Mari Bersama Membangun Mutu Pendidikan</h3><p>Pendidikan bukan persiapan untuk hidup. Pendidikan adalah hidup itu sendiri (John Dewey)</p></div>
+          <img src="<?php echo base_url() ?>frontend/web/images/header/header1_new.jpg" alt="home" />
+          <div class="caption text-center"><h3>Sistem Pendukung Keputusan Penentuan Pemain Tengah <br> Studi Kasus : Persebaya U-14</h3></div>
         </li>
 		 <li id="callbacks1_s2" class="" style="float: none; position: absolute; opacity: 0; z-index: 1; display: list-item; transition: opacity 500ms ease-in-out;">
-          <img src="<?php echo base_url() ?>frontend/web/images/header/header2.jpg" alt="home" />
-          <div class="caption text-center"><h3>Mari Bersama Membangun Mutu Pendidikan</h3><p>Arah yang diberikan pendidikan untuk mengawali hidup seseorang akan menentukan masa depannya (Plato)</p></div>
+          <img src="<?php echo base_url() ?>frontend/web/images/header/header2_new.jpg" alt="home" />
+		  <div class="caption text-center"><h3>Sistem Pendukung Keputusan Penentuan Pemain Tengah <br> Studi Kasus : Persebaya U-14</h3></div>
         </li>
         <li id="callbacks1_s3" class="callbacks1_on" style="float: left; position: relative; opacity: 1; z-index: 2; display: list-item; transition: opacity 500ms ease-in-out;">
-          <img src="<?php echo base_url() ?>frontend/web/images/header/header3.jpg" alt="home" />
-          <div class="caption text-center"><h3>Mari Bersama Membangun Mutu Pendidikan</h3> <p>Seorang Guru menggandeng tangan, membuka pikiran, menyentuh hati, dan membentuk masa depan. Seorang Guru berpengaruh selamanya. Dia tidak pernah tahu kapan pengaruhnya berakhir (Henry Adam)</p></div>
+          <img src="<?php echo base_url() ?>frontend/web/images/header/header3_new.jpg" alt="home" />
+		  <div class="caption text-center"><h3>Sistem Pendukung Keputusan Penentuan Pemain Tengah <br> Studi Kasus : Persebaya U-14</h3></div>
+
         </li>
 		<li id="callbacks1_s6" class="callbacks1_on" style="float: left; position: relative; opacity: 1; z-index: 2; display: list-item; transition: opacity 500ms ease-in-out;">
-          <img src="<?php echo base_url() ?>frontend/web/images/header/header4.jpg" alt="home" />
-          <div class="caption text-center"><h3>Mari Bersama Membangun Mutu Pendidikan</h3> <p> Salah satu tanda seorang pendidik yang hebat yakni mampu memimpin murid-murid menjelajahi tempat-tempat baru yang bahkan belum pernah didatangi sang pendidik itu sendiri (Thomas Groome)</p></div>
+		  <img src="<?php echo base_url() ?>frontend/web/images/header/header4_new.jpg" alt="home" />
+          <div class="caption text-center"><h3>Sistem Pendukung Keputusan Penentuan Pemain Tengah <br> Studi Kasus : Persebaya U-14</h3></div>
+		  
         </li>
       </ul>
 	  		<a href="#" class="callbacks_nav callbacks1_nav prev">Previous</a><a href="#" class="callbacks_nav callbacks1_nav next">Next</a>

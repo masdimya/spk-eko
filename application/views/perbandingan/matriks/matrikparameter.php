@@ -42,6 +42,7 @@ hitung();
 ?>
 
 $("#formentri").submit(function(e){
+	console.log("sadasd");
 	e.preventDefault();
 	$.ajax({
 		type:'post',
@@ -67,6 +68,34 @@ $("#formentri").submit(function(e){
 			}
 			$("#formentri select").removeAttr("disabled");
 			$("#formentri button").removeAttr("disabled");
+		},
+	});
+});
+
+$("#formgetprio").submit(function(e){
+	var id_sub = $('#idsub').val();
+	e.preventDefault();
+	$.ajax({
+		type:'post',
+		dataType:'json',
+		url:"<?=base_url();?>Perbandingan/simpanPrioritasSkala/"+id_sub,
+		data:$(this).serialize(),
+		success:function(x){
+			console.log(x);
+		},
+	});
+});
+
+$("#formgetnilai").submit(function(e){
+	var id_sub = $('#idsub').val();
+	e.preventDefault();
+	$.ajax({
+		type:'post',
+		dataType:'json',
+		url:"<?=base_url();?>Perbandingan/simpanNilaiSkala/"+id_sub,
+		data:$(this).serialize(),
+		success:function(x){
+			console.log(x);
 		},
 	});
 });
@@ -242,109 +271,156 @@ function showsubkriteria()
 <div id="respon"></div>
 
 <div id="entri" class="col-md-12">
-<?php
-echo form_open('#',array('class'=>'form-horizontal','id'=>'formentri'));
-?>
-<input type="hidden" name="crvalue" id="crvalue"/>
-<div class="table-responsive">
-<table class="table table-bordered">
-<thead>
-	<th colspan="<?=$jumlah+1;?>" class="text-center">Matrik Perbandingan Berpasangan</th>
-</thead>
-<thead>
-	<th>Kriteria</th>
+<h1>Perbandingan Berpasangan <?=$nama_sub?></h1>
 	<?php
-	foreach($arr as $k=>$v)
-	{
+	// echo form_open('#',array('class'=>'form-horizontal','id'=>'formentri'));
 	?>
-	<th><?=$v;?></th>
-	<?php
-	}
-	?>	
-</thead>
-<tbody>
-	<?php
-	$noUtama=0;	
-	foreach($arr as $k2=>$v2)
-	{		
-		$noUtama+=1;				
-		//array_shift($xxx);
-		
-		echo '<tr>';
-		echo '<td>'.$v2.'</td>';
-		$noSub=0;				
-		$xxx='';				
-		for($i=1;$i<=$jumlah;$i++)
-		{
-			$keys = array_keys($arr);
-			$xxx=$keys[array_search("gsda",$keys)+($i-1)];
-			$newname=$k2."[".$xxx."]";
-			$noSub+=1;
-			if($noSub==$noUtama)
-			{
-				echo '<td><input type="number" id="k'.$noUtama.'b'.$noSub.'" class="form-control kolom'.$noSub.'" value="1" readonly="" title="kolom'.$noSub.'"/></td>';
-			}else{
-				
-				if($noUtama > $noSub)
-				{									
-					echo '<td><input type="text" id="k'.$noUtama.'b'.$noSub.'" class="form-control kolom'.$noSub.'" value="0" readonly="" title="kolom'.$noSub.'"/></td>';
-				}else{
-					echo '<td>';
-					echo '<select name="'.$newname.'" id="k'.$noUtama.'b'.$noSub.'" data-target="k'.$noSub.'b'.$noUtama.'" data-kolom="'.$noSub.'" class="form-control inputnumber kolom'.$noSub.'" title="kolom'.$noSub.'">';
-					for($x=1;$x<=9;$x++)
+	<input type="hidden" name="crvalue" id="crvalue"/>
+	<input type="hidden" id="idsub" value="<?=$id_sub?>"/>
+<?php
+
+echo form_open('#',array('class'=>'form-horizontal','id'=>'formgetnilai'));
+
+$noUtama=0;	
+foreach($arr as $k2=>$v2)
+{		
+	$noUtama+=1;				
+	$noSub=0;				
+	$xxx='';				
+	for($i=1;$i<=$jumlah;$i++)
+	{
+		$keys = array_keys($arr);
+		$xxx=$keys[array_search("gsda",$keys)+($i-1)];
+		$newname=$k2."[".$xxx."]";
+		$noSub+=1;
+		if($noSub!=$noUtama){
+			
+			if($noUtama < $noSub){
+				echo '<label> Perbandingan Skala '.$noUtama.' dengan Skala '.$noSub.'</label>';
+				echo '<select name="'.$newname.'" id="k'.$noUtama.'b'.$noSub.'" data-target="k'.$noSub.'b'.$noUtama.'" data-kolom="'.$noSub.'" class="form-control inputnumber kolom'.$noSub.'" title="kolom'.$noSub.'">';
+				for($x=1;$x<=4;$x++)
+				{
+					$nilai=ambil_nilai_kriteria($k2,$xxx);
+					$sl='';
+					if($nilai==$x)
 					{
-						$nilai=ambil_nilai_kriteria($k2,$xxx);
-						$sl='';
-						if($nilai==$x)
-						{
-							$sl='selected="selected"';
-						}
-						echo '<option value="'.$x.'" '.$sl.'>'.$x.'</option>';
+						$sl='selected="selected"';
 					}
-					echo '</select>';
-				}				
-			}
+					echo '<option value="'.$x.'" '.$sl.'>'.$x.'</option>';
+				}
+				echo '</select>';
+				echo '<br>';
+			}				
 		}
-		echo '</tr>';
 	}
-	?>	
-</tbody>
-<tfoot>
-	<tr>
-		<td>Jumlah</td>
-		<?php
-		for($h=1;$h<=$jumlah;$h++)
-		{
-		?>
-		<td><input type="text" id="total<?=$h;?>" class="form-control" value="0" title="total<?=$h;?>"  readonly=""/></td>
-		<?php
-		}
-		?>
-	</tr>
-</tfoot>
-</table>
-</div>
+	echo '</tr>';
+}
+?>	
+
 
 <div class="pull-left">
 	<!-- <a href="javascript:;" onclick="hitung();" class="btn btn-primary">Hitung</a>  -->
-	<a href="javascript:;" onclick="showmatrix();" class="btn btn-info">Lihat Matriks</a>	
-	<a href="javascript:;" onclick="showsubkriteria();" class="btn btn-info">Lihat Sub Kriteria</a>
-	<button type="submit" name="submit" class="btn btn-success">Simpan Kriteria</button>	
+	<a href="javascript:;" onclick="showmatrix();" class="btn btn-info">Lihat Matriks</a>
+	<button type="submit" name="submit" class="btn btn-success">Simpan Nilai Skala</button>		
 </div>
-<?php
-echo form_close();
-?>
+<?php echo form_close(); ?>
+
+
+<div class="table-responsive">
+	<table class="table table-bordered" style="display:none">
+	<thead>
+		<th colspan="<?=$jumlah+1;?>" class="text-center"> Perbandingan Berpasangan <?=$nama_sub?></th>
+	</thead>
+	<thead>
+		<th>Parameter</th>
+		<?php
+		foreach($arr as $k=>$v)
+		{
+		?>
+		<th><?=$v;?></th>
+		<?php
+		}
+		?>	
+	</thead>
+	<tbody>
+		<?php
+		$noUtama=0;	
+		foreach($arr as $k2=>$v2)
+		{		
+			$noUtama+=1;				
+			//array_shift($xxx);
+			
+			echo '<tr>';
+			echo '<td>'.$v2.'</td>';
+			$noSub=0;				
+			$xxx='';				
+			for($i=1;$i<=$jumlah;$i++)
+			{
+				$keys = array_keys($arr);
+				$xxx=$keys[array_search("gsda",$keys)+($i-1)];
+				$newname=$k2."[".$xxx."]";
+				$noSub+=1;
+				if($noSub==$noUtama)
+				{
+					echo '<td><input type="number" id="k'.$noUtama.'b'.$noSub.'" class="form-control kolom'.$noSub.'" value="1" readonly="" title="kolom'.$noSub.'"/></td>';
+				}else{
+					
+					if($noUtama > $noSub)
+					{									
+						echo '<td><input type="text" id="k'.$noUtama.'b'.$noSub.'" class="form-control kolom'.$noSub.'" value="0" readonly="" title="kolom'.$noSub.'"/></td>';
+					}else{
+						echo '<td>';
+						// echo '<select name="'.$newname.'" id="k'.$noUtama.'b'.$noSub.'" data-target="k'.$noSub.'b'.$noUtama.'" data-kolom="'.$noSub.'" class="form-control inputnumber kolom'.$noSub.'" title="kolom'.$noSub.'">';
+						for($x=1;$x<=4;$x++)
+						{
+							$nilai=ambil_nilai_kriteria($k2,$xxx);
+							$sl='';
+							if($nilai==$x)
+							{
+								$sl='selected="selected"';
+							}
+							echo '<option value="'.$x.'" '.$sl.'>'.$x.'</option>';
+						}
+						echo '</select>';
+					}				
+				}
+			}
+			echo '</tr>';
+		}
+		?>	
+	</tbody>
+	<tfoot>
+		<tr>
+			<td>Jumlah</td>
+			<?php
+			for($h=1;$h<=$jumlah;$h++)
+			{
+			?>
+			<td><input type="text" id="total<?=$h;?>" class="form-control" value="0" title="total<?=$h;?>"  readonly=""/></td>
+			<?php
+			}
+			?>
+		</tr>
+	</tfoot>
+</table>
+</div>
+
+
+
 </div>
 <br><br><br>
 <div id="matrikdiv" class="col-md-12" style="display: none">
 
 <div class="table-responsive">
+<?php
+echo form_open('#',array('class'=>'form-horizontal','id'=>'formgetprio'));
+?>
 <table class="table table-bordered">
 <thead>
-	<th colspan="<?=$jumlah+3;?>" class="text-center">Matrik Nilai Kriteria</th>
+	<th colspan="<?=$jumlah+3;?>" class="text-center">Matrik Nilai Skala</th>
 </thead>
 <thead>
-	<th>Kriteria</th>
+	<th>Skala</th>
 	<?php
 	foreach($arr as $k=>$v)
 	{
@@ -371,16 +447,22 @@ echo form_close();
 			echo '<td><input type="text" id="mn-k'.$noUtama2.'b'.$noSub2.'" class="form-control" value="0" readonly=""/></td>';
 		}
 		echo '<td><input type="text" class="form-control" id="jml-b'.$noUtama2.'" value="0" readonly=""/></td>';
-		echo '<td><input type="text" class="form-control" id="pri-b'.$noUtama2.'" value="0" readonly=""/></td>';
+		echo '<td><input type="text" class="form-control" id="pri-b'.$noUtama2.'" name="pri-b[]" value="0" readonly=""/></td>';
 		echo '</tr>';
 	}
 	?>	
 </tbody>
 </table>
+<div class="pull-left">
+	<button type="submit" name="submit" class="btn btn-success">Simpan Prioritas Skala</button>	
+</div>
+<?php
+echo form_close();
+?>
 </div>
 
 <div class="table-responsive">
-<table class="table table-bordered">
+<table class="table table-bordered" style="display:none">
 <thead>
 	<th colspan="<?=$jumlah+1;?>" class="text-center">Matrik Penjumlahan Tiap Baris</th>
 </thead>
@@ -419,7 +501,7 @@ echo form_close();
 </div>
 
 <div class="table-responsive">
-<table class="table table-bordered">
+<table class="table table-bordered" style="display:none">
 <thead>
 	<th colspan="<?=$jumlah+1;?>" class="text-center">Rasio Konsistensi</th>
 </thead>
@@ -456,7 +538,7 @@ echo form_close();
 </div>
 
 <div class="table-responsive">
-<table class="table table-bordered">
+<table class="table table-bordered" style="display:none">
 <thead>
 	<th colspan="<?=$jumlah+1;?>" class="text-center">Hasil Perhitungan</th>
 </thead>
@@ -499,4 +581,7 @@ echo form_close();
 </table>
 </div>
 
+<?php
+
+?>
 </div>

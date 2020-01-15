@@ -233,6 +233,7 @@ th {
   }
   .navbar {
     display: none;
+    background: rgb(0, 0, 0) !important;
   }
   .table td,
   .table th {

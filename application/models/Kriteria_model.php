@@ -103,6 +103,10 @@ class Kriteria_model extends CI_Model
         $this->db->delete($this->table);
     }
 
+    function get_subname($id){
+        return $this->db->get_where('subkriteria',array('id_subkriteria'=>$id))->row();
+    }
+
 }
 
 /* End of file Kriteria_model.php */

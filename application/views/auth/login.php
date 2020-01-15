@@ -4,7 +4,7 @@
             </div>
             
             <div class="title">
-              <h3>SPK Penentuan Perawat Terbaik Menggunakan Metode AHP</h3>
+              <h3>SPK Penentuan Pemain Tengah Menggunakan Metode AHP</h3>
               <p>Silahkan Login untuk melanjutkan</p>
             </div>
       </div>

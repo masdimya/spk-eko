@@ -13,9 +13,9 @@
 				<h4>Topbar</h4>
 				<div class="btnSwitch">
 					<button type="button" class="changeMainHeaderColor" data-color="blue"></button>
-					<button type="button" class="selected changeMainHeaderColor" data-color="purple"></button>
+					<button type="button" class="changeMainHeaderColor" data-color="purple"></button>
 					<button type="button" class="changeMainHeaderColor" data-color="light-blue"></button>
-					<button type="button" class="changeMainHeaderColor" data-color="green"></button>
+					<button type="button" class="selected changeMainHeaderColor" data-color="green"></button>
 					<button type="button" class="changeMainHeaderColor" data-color="orange"></button>
 					<button type="button" class="changeMainHeaderColor" data-color="red"></button>
 				</div>

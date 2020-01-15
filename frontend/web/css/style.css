@@ -246,12 +246,13 @@ span.line1 {
   }
 .caption h3 {
     color: #e0b243;
-    background: rgba(0, 84, 152, 0.46);
+    background: rgba(3, 10, 15, 0.46);
     width: 41%;
     margin: 0 auto;
     font-size: 3em;
     font-weight: 400;
-    text-transform: capitalize;
+	text-transform: capitalize;
+	font-family: 'Fjalla One', sans-serif;
 }
 .caption p{
 	padding-top: 1em;

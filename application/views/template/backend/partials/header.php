@@ -17,7 +17,7 @@
 			},
 			custom: {
 				"families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands"],
-				urls: ['assets/css/fonts.css']
+				urls: ['<?= base_url() ?>assets/css/fonts.css']
 			},
 			active: function() {
 				sessionStorage.fonts = true;
@@ -39,7 +39,7 @@
 		<!--
 			Tip 1: You can change the background color of the main header using: data-background-color="blue | purple | light-blue | green | orange | red"
 		-->
-		<div class="main-header" data-background-color="purple">
+		<div class="main-header" data-background-color="green">
 			<!-- Logo Header -->
 			<div class="logo-header">
 

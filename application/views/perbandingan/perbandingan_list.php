@@ -1,8 +1,6 @@
 <script type="text/javascript">
-	$(document).ready(function() {
-		$("#formcari").submit(function(e) {
-			e.preventDefault();
-			$.ajax({
+	function tampil(){
+		$.ajax({
 				type: 'get',
 				dataType: 'html',
 				url: "<?= base_url('Perbandingan/gethtml'); ?>",
@@ -17,8 +15,7 @@
 					$("#matrik").html(x);
 				},
 			});
-		});
-	});
+	}
 
 	function showsubdata(kriteria) {
 		$.ajax({
@@ -62,14 +59,14 @@
 							<div class="row">
 								<div class="col-md-12">
 									<?php
-									echo form_open('#', array('class' => 'form-horizontal', 'id' => 'formcari'));
+									
 									?>
 									<div class="form-group">
 										<label class="col-sm-2 control-label">Silahkan Klik Untuk Memulai</label><br>
-										<button type="submit" class="btn btn-primary btn-flat">Tampilkan</button>
+										<button onclick="tampil()" class="btn btn-primary btn-flat">Tampilkan</button>
 									</div>
 									<?php
-									echo form_close();
+									
 									?>
 									<div id="matrik"></div>
 								</div>

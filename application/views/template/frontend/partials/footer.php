@@ -12,7 +12,7 @@
 				</ul>
 			</div>
 			<div class="col-md-6 col-sm-6 w3_agile-copyright text-center">
-				<p>© 2019 SPK Perawat Terbaik | Design by <a href="//w3layouts.com/">W3layouts</a></p>
+				<p>© 2019 SPK Pemain Tengah Persebaya | Design by <a href="//w3layouts.com/">W3layouts</a></p>
 			</div>
 		</div>
 	</div>

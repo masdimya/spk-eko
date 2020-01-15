@@ -19,8 +19,18 @@ class Perbandingan extends CI_Controller
 	}
 	function banding_parameter()
     {        
-		$d['kriteria']=$this->mod_kriteria->kriteria_data();
-		var_dump($d['kriteria']);die;
+		$kriteria=$this->mod_kriteria->kriteria_data();
+		
+		foreach ($kriteria as $item) {
+			$subkriteria 		 = $this->mod_kriteria->subkriteria_data(array("id_kriteria"=>$item->id_kriteria));
+			$d['kriteria_sub'][] = array(
+									'kriteria' 		=> $item,
+									'subkriteria' 	=> $subkriteria										
+				
+			); 
+			
+		}
+
 		$this->template->load('template/backend/dashboard', 'perbandingan/perbandingan_parameter',$d);
     }
 
@@ -32,7 +42,7 @@ class Perbandingan extends CI_Controller
 		{
 			$output[$rK->id_kriteria]=$rK->nama_kriteria;
 		}		
-    	$d['arr']=$output;
+		$d['arr']=$output;
     	// $this->template->load('template/backend/dashboard', 'perbandingan/matriks/matrikutama', $d);
     	$this->load->view('perbandingan/matriks/matrikutama', $d);
 	}
@@ -72,10 +82,11 @@ class Perbandingan extends CI_Controller
     	);
     	$this->m_db->delete_row('kriteria_nilai',$s);
     	    	
-    	$cr=$this->input->post('crvalue');
+		$cr=$this->input->post('crvalue');
+		
     	if($cr > 0.01)
     	{
-    		$msg="Gagal diupdate karena nilai CR kurang dari 0.01";
+    		$msg="Gagal diupdate karena nilai CR kurang dari 0.01 ".$cr;
 			$error=TRUE;
 		}else{
 			foreach($_POST as $k=>$v)
@@ -104,6 +115,55 @@ class Perbandingan extends CI_Controller
 		}else{
 			echo json_encode(array('status'=>'no','msg'=>$msg));
 		}
+		
+	}
+
+	function simpanPrioritasSkala($id)
+    {
+		
+		$prioroitas=$this->input->post('pri-b');
+
+		foreach ($prioroitas as $i => $item) {
+			$data[]=array(
+				'id_subkriteria' => $id,
+				'skala_nilai'	 => $i+1,
+				'prioritas'  	 => $item
+			);
+		}
+		
+		$this->db->delete('parameter_hasil', array('id_subkriteria ' => $id)); 
+		
+		$this->db->insert_batch('parameter_hasil',$data);
+		
+		
+		echo json_encode($data);
+
+	}
+
+	function simpanNilaiSkala($id)
+    {
+		
+		foreach($_POST as $k=>$v)
+		{								
+			foreach($v as $x=>$x2)
+			{
+				$data[] =array(
+						'id_subkriteria'  		=>(int)$id,
+						'id_parameter_dari'		=>$k,
+						'id_parameter_tujuan'	=>$x,
+						'nilai'					=>(int)$x2,
+						);
+			}
+				
+		}
+
+		$this->db->delete('parameter_nilai', array('id_subkriteria' => $id));
+		$this->db->insert_batch('parameter_nilai',$data);
+		// foreach ($data as $item) {
+		// 	$this->db->insert('parameter_nilai',$data);
+		// 	echo json_encode($this->db->error());
+			
+		// }
 		
 	}
 
@@ -212,6 +272,40 @@ class Perbandingan extends CI_Controller
 			//redirect(base_url(akses().'/beasiswa/beasiswa'));
 			echo json_encode(array('status'=>'no'));
 		}	
+	}
+
+	function gethtml_parameter($id_sub)
+    {
+		$output=array();
+		
+		for ($i=1; $i <=4 ; $i++) { 
+			$output[$i]=$i;
+		}
+		$d['nama_sub'] 	=$this->mod_kriteria->get_subname($id_sub)->nama_subkriteria; 
+		$d['arr']		=$output;
+		$d['id_sub'] 	=$id_sub;
+    	// $this->template->load('template/backend/dashboard', 'perbandingan/matriks/matrikutama', $d);
+    	$this->load->view('perbandingan/matriks/matrikparameter', $d);
+	}
+
+	function getparameter()
+	{		
+		$id=$this->input->get('skriteria');
+    	$namaKriteria=$this->mod_kriteria->kriteria_info($id,'nama_kriteria');
+    	$dSub=$this->mod_kriteria->subkriteria_child($id,'id_nilai ASC');
+    	$output=array();
+    	if(!empty($dSub))
+    	{					
+		foreach($dSub as $rK)
+		{
+			$nama=field_value('subkriteria','id_subkriteria',$rK->id_subkriteria,'nama_subkriteria');
+			$output[$rK->id_subkriteria]=$nama;
+		}
+		}
+    	$d['arr']=$output;
+    	$d['kriteriaid']=$id;
+    	$d['namakriteria']=$namaKriteria;
+    	$this->load->view('perbandingan/matriks/matriksub', $d);
 	}
     
     
