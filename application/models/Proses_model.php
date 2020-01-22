@@ -10,66 +10,41 @@ class Proses_model extends CI_Model
     }
     
 	
-	function proseshitung()
+	function proseshitung($nilai_KKM)
 	{
-		$dKriteria=$this->mod_kriteria->kriteria_data();
-			$dAlternatif=$this->m_db->get_data('alternatif');
-			if(!empty($dAlternatif))
-			{
-				
-				foreach($dAlternatif as $rAlternatif)
-				{
-					$alternatifID=$rAlternatif->id_alternatif;
-					$sekolahID=$rAlternatif->id_sekolah;
-					$nama_sekolah=field_value('sekolah','id_sekolah',$sekolahID,'nama_sekolah');			
-					if(!empty($dKriteria))
-					{
-						$total=0;
-						foreach($dKriteria as $rKriteria)
-						{						
-							$kriteriaid=$rKriteria->id_kriteria;
-							$subkriteria=alternatif_nilai($alternatifID,$kriteriaid);
-							$nilaiID=field_value('subkriteria','id_subkriteria',$subkriteria,'id_nilai');
-							$nilai=field_value('nilai_kategori','id_nilai',$nilaiID,'nama_nilai');
-							$prioritas=ambil_prioritas($subkriteria);
-							$total+=$prioritas;							
-						}						
-					}
-					
-					$shasil=array(
-					'id_alternatif'=>$alternatifID,
-					);
-					$dhasil=array(
-					'total'=>$total,
-					);
-					$this->m_db->edit_row('alternatif',$dhasil,$shasil);
-			
-					$dPH=$this->m_db->get_data('alternatif');
-					$kuota = 100;
-					$rank=0;
-					foreach($dPH as $rPH)
-					{
-						$rank+=1;
-						$d=array();
-						if($rank <= $kuota)
-						{
-							$d=array(
-							'status'=>'Unggulan',
-							);
-						}else{
-							$d=array(
-							'status'=>'Belum Unggulan',
-							);
-						}
-						$this->m_db->edit_row('alternatif',$d,array('id_alternatif'=>$rPH->id_alternatif));
-					}
-					
-					return true;
-				}								
-			}else{
-				return false;
-			}
-			
-		}
+		
+		$sql='SELECT tmp.id_pemain, 
+		             SUM(tmp.sum_pertama * kriteria.prioritas) as total,
+					 IF(SUM(tmp.sum_pertama * kriteria.prioritas) >= '.$nilai_KKM.',"LAYAK","TIDAK_LAYAK") as status
+			  FROM 
+					(SELECT alternatif.id_pemain,
+						subkriteria.id_kriteria,
+						SUM(parameter_hasil.prioritas * subkriteria_hasil.prioritas) as sum_pertama
+					FROM alternatif
+					LEFT JOIN alternatif_nilai ON alternatif.id_alternatif = alternatif_nilai.id_alternatif
+					LEFT JOIN subkriteria ON alternatif_nilai.id_subkriteria = subkriteria.id_subkriteria
+					LEFT JOIN subkriteria_hasil ON subkriteria.id_subkriteria = subkriteria_hasil.id_subkriteria
+					LEFT JOIN parameter_hasil ON 
+					(alternatif_nilai.id_subkriteria = parameter_hasil.id_subkriteria AND alternatif_nilai.nilai = parameter_hasil.skala_nilai)
+					GROUP BY alternatif.id_pemain,subkriteria.id_kriteria) as tmp
+		      LEFT JOIN kriteria on tmp.id_kriteria = kriteria.id_kriteria
+			  GROUP BY tmp.id_pemain
+			  ORDER BY tmp.id_pemain,tmp.id_kriteria';
+		
+		$q = $this->db->query($sql)->result();
+		return $q;
+	}
+
+	function hasilPerhitungan(){
+		$q= $this->db->select('sekolah.nama_pemain,
+							   sekolah.posisi,
+							   IF(alternatif.total is NULL ,0, alternatif.total) as total ,
+							   IF(alternatif.status is NULL, "NONE",alternatif.status) as status')
+					 ->join('sekolah','alternatif.id_pemain = sekolah.id_pemain','left')
+					 ->get('alternatif')
+					 ->result();
+		return $q;
+	}
+
 	
 }

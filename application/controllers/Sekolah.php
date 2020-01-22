@@ -75,32 +75,25 @@ class Sekolah extends CI_Controller
 	    'dep_jabatan' => set_value('dep_jabatan'),
 	    'tgl_bergabung' => set_value('tgl_bergabung'),
 	    'tgl_evaluasi' => set_value('tgl_evaluasi'),
-	    'hasil_evaluasi' => set_value('hasil_evaluasi'),
-	    'target_evaluasi' => set_value('target_evaluasi'),
 	);
         $this->template->load('template/backend/dashboard', 'sekolah/sekolah_form', $data);
     }
     
     public function create_action() 
     {
-        $this->_rules();
-
-        if ($this->form_validation->run() == FALSE) {
-            $this->create();
-        } else {
-            $data = array(
-		'nama_perawat' => $this->input->post('nama_perawat',TRUE),
-		'dep_jabatan' => $this->input->post('dep_jabatan',TRUE),
+        
+        $data = array(
+		'nama_pemain' => $this->input->post('nama_perawat',TRUE),
+		'posisi' => $this->input->post('dep_jabatan',TRUE),
 		'tgl_bergabung' => $this->input->post('tgl_bergabung',TRUE),
 		'tgl_evaluasi' => $this->input->post('tgl_evaluasi',TRUE),
-		'hasil_evaluasi' => $this->input->post('hasil_evaluasi',TRUE),
-		'target_evaluasi' => $this->input->post('target_evaluasi',TRUE),
 	    );
 
-            $this->Sekolah_model->insert($data);
-            $this->session->set_flashdata('message', 'Create Record Success');
-            redirect(site_url('sekolah'));
-        }
+        
+        $this->Sekolah_model->insert($data);
+        $this->session->set_flashdata('message', 'Create Record Success');
+        redirect(site_url('sekolah'));
+        
     }
     
     public function update($id) 

@@ -18,31 +18,35 @@ class Alternatif extends CI_Controller
     
     function index()
     {
- 
-    	$sql="SELECT sekolah.* FROM sekolah INNER JOIN alternatif_nilai on sekolah.id_pemain = alternatif_nilai.id_pemain GROUP BY sekolah.id_pemain";
-        $data['data']=$this->m_db->get_query_data($sql);
+		$data['data'] = $this->mod_alternatif->getAlternatif();
+		
+    	// $sql="SELECT sekolah.* FROM sekolah INNER JOIN alternatif_nilai on sekolah.id_pemain = alternatif_nilai.id_pemain GROUP BY sekolah.id_pemain";
+        // $data['data']=$this->m_db->get_query_data($sql);
         $this->template->load('template/backend/dashboard', 'alternatif/alternatif_list', $data);
     }
 
     function create()
     {	
 			
-			$id_perawat=$this->input->post('id_perawat');
+			$id_pemain=$this->input->post('id_pemain');
 			$id_subkriteria=$this->input->post('subkriteriaid');
 			$nilai = $this->input->post('nilai');
 
 			
-			if($id_perawat)
+			if($id_pemain)
 			{
+				
+				$id_alternatif = $this->mod_alternatif->insertAlternatif($id_pemain);
+
 				$listSekolah="";
-				foreach ($id_subkriteria as $i => $item) {
+				foreach ($id_subkriteria as $i => $item) {	
 					$data[] = array(
-							  "id_pemain"      =>$id_perawat,
-							  "id_subkriteria" =>$item,
-							  "nilai" 		   =>$nilai[$i]
+							  "id_alternatif"      =>$id_alternatif,
+							  "id_subkriteria"     =>$item,
+							  "nilai" 		       =>$nilai[$i]
 					);
 				}
-				
+
 				if(!$this->mod_alternatif->insertAlternatifNilai($data))
 				{
 					$this->session->set_flashdata('warning', "Insert Data Alternatif Gagal ☹");
@@ -58,7 +62,7 @@ class Alternatif extends CI_Controller
 			
 	        $daftar_nilai = $this->mod_alternatif->getnilai();
 			
-	        $d['sekolah']=$this->mod_sekolah->sekolah_data();
+			$d['sekolah']=$this->mod_alternatif->getNotInAlternatif();
 	        $d['subkriteria']=$this->mod_kriteria->subkriteria_data();
 	        $d['option_nilai'] = "";
 	        foreach ($daftar_nilai as $item) {

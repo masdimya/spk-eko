@@ -62,30 +62,22 @@ if ($c < 1) {
 								
 							<div class="table-responsive" >
 						
-								<label class="col-sm-2 control-label">Silahkan Klik Untuk Menampilkan Hasil</label><br>
-								<button onclick="tampil()" class="btn btn-primary btn-flat">Tampilkan</button>
+								<label class="col-md-4 control-label">Silahkan Klik Untuk Update Hasil Perhitungan</label><br>
+								<button onclick="proseshitung()" class="btn btn-primary btn-flat">Update</button>
 							
-							<table class="table table-bordered " style="display:none" id="tabelhasil">
+							<table class="table table-bordered " id="tabelhasil">
 								<thead>
 									<th>Nama Pemain</th>
-									<?php
-									// $dKriteria = $this->mod_kriteria->kriteria_data();
-									// if (!empty($dKriteria)) {
-									// 	foreach ($dKriteria as $rKriteria) {
-									// 		echo '<th>' . $rKriteria->nama_kriteria . '</th>';
-									// 	}
-									// }
-									?>
-									<!-- <th>Total</th> -->
-									<th>Posisi Awal</th>
+									<th>Posisi</th>
+									<th>Nilai Perhitungan</th>
 									<th>Status</th>
 								</thead>
 								<?php
 
-
-								$dAlternatif = $this->m_db->get_data('sekolah');
-								if (!empty($dAlternatif)) {
-
+								
+								
+								if ($dAlternatif) {
+									
 									foreach ($dAlternatif as $rAlternatif) {
 										// $alternatifID = $rAlternatif->id_alternatif;
 										// $sekolahID = $rAlternatif->id_sekolah;
@@ -95,7 +87,8 @@ if ($c < 1) {
 										<tr>
 											<td><?= $rAlternatif->nama_pemain; ?></td>
 											<td><?= $rAlternatif->posisi; ?></td>
-											<td><?= $rAlternatif->hasil_evaluasi; ?></td>
+											<td><?= $rAlternatif->total; ?></td>
+											<td><?= str_replace("_"," ",$rAlternatif->status); ?></td>
 
 											<?php
 											// $total = 0;

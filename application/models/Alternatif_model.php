@@ -74,6 +74,29 @@ class Alternatif_model extends CI_Model
 		}
 		return false;
 	}
+
+	function insertAlternatif($id_pemain){
+		if($this->db->insert("alternatif",array("id_pemain" => $id_pemain))){
+			return $this->db->insert_id(); 
+		}
+	}
+
+	function getAlternatif(){
+		$q = $this->db->select('sekolah.*')
+				 ->join('alternatif','sekolah.id_pemain = alternatif.id_pemain','inner')
+				 ->get('sekolah')
+				 ->result();
+		return $q;
+	}
+
+	function getNotInAlternatif(){
+		$q = $this->db->select('sekolah.*')
+				 ->join('alternatif','sekolah.id_pemain = alternatif.id_pemain','left')
+				 ->where('alternatif.id_alternatif is NULL')
+				 ->get('sekolah')
+				 ->result();
+		return $q;
+	}
 	
 
 

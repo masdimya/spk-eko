@@ -32,20 +32,13 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="varchar">Tangal Bergabung <?php echo form_error('tgl_bergabung') ?></label>
-                                        <input type="text" class="form-control" name="tgl_bergabung" id="tgl_bergabung" placeholder="Tangal Bergabung" value="<?php echo $tgl_bergabung; ?>" />
+                                        <input type="date" class="form-control" name="tgl_bergabung" id="tgl_bergabung" placeholder="Tangal Bergabung" value="<?php echo $tgl_bergabung; ?>" />
                                     </div>
                                     <div class="form-group">
                                         <label for="varchar">Tangal Evaluasi <?php echo form_error('tgl_evaluasi') ?></label>
-                                        <input type="text" class="form-control" name="tgl_evaluasi" id="tgl_evaluasi" placeholder="Tangal Evaluasi" value="<?php echo $tgl_evaluasi; ?>" />
+                                        <input type="date" class="form-control" name="tgl_evaluasi" id="tgl_evaluasi" placeholder="Tangal Evaluasi" value="<?php echo $tgl_evaluasi; ?>" />
                                     </div>
-                                    <div class="form-group">
-                                        <label for="visi">Hasil Evaluasi Sebelumnya <?php echo form_error('hasil_evaluasi') ?></label>
-                                        <textarea class="form-control" rows="3" name="hasil_evaluasi" id="hasil_evaluasi" placeholder="Hasil Evaluasi Sebelumnya"><?php echo $hasil_evaluasi; ?></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="misi">Target Selama Evaluasi <?php echo form_error('target_evaluasi') ?></label>
-                                        <textarea class="form-control" rows="3" name="target_evaluasi" id="target_evaluasi" placeholder="Target Selama Evaluasi"><?php echo $target_evaluasi; ?></textarea>
-                                    </div>
+                                    
                                     <input type="hidden" name="id_perawat" value="<?php echo $id_perawat; ?>" /> 
                                     <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
                                     <a href="<?php echo site_url('sekolah') ?>" class="btn btn-default">Cancel</a>

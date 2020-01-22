@@ -1,6 +1,8 @@
 <?php $pag = $this->uri->segment(1); ?>
 <?php $page = $this->uri->segment(2); ?>
 <?php $pages = $this->uri->segment(3); ?>
+
+
 <!-- Sidebar -->
 <div class="sidebar">
 	<div class="sidebar-background"></div>
@@ -39,6 +41,14 @@
 					<h4 class="text-section">Data Masuk</h4>
 				</li>
 
+				<li <?php if ($pag == "sekolah" || $pag == "Sekolah") {
+						echo 'class="nav-item active" ';
+					} else {
+						echo 'class="nav-item" ';
+					} ?>>
+					<?= anchor('Sekolah', '<i class="fas fa-home"></i><p>Pemain</p>'); ?>
+				</li>
+
 				<li <?php if ($pag == "Kriteria" || $pag == "kriteria" || $pag == "Subkriteria" || $pag == "subkriteria") {
 						echo 'class="nav-item active" ';
 					} else {
@@ -58,15 +68,7 @@
 					</div>
 				</li>
 
-				<li <?php if ($pag == "sekolah" || $pag == "Sekolah") {
-						echo 'class="nav-item active" ';
-					} else {
-						echo 'class="nav-item" ';
-					} ?>>
-					<?= anchor('Sekolah', '<i class="fas fa-home"></i><p>Pemain</p>'); ?>
-				</li>
-
-				<li <?php if ($pag == "Alternatif" || $pag == "alternatif" || $page == "Banding" || $page == "banding" || $page == "Hasil" || $page == "hasil") {
+				<li <?php if ($pag == "Alternatif" || $pag == "alternatif" || $page == "Banding" || $page == "banding" || $page == "banding_parameter" ) {
 						echo 'class="nav-item active" ';
 					} else {
 						echo 'class="nav-item" ';
@@ -81,10 +83,19 @@
 					<div class="collapse" id="hitung">
 						<ul class="nav nav-collapse">
 							<li><?= anchor('Alternatif', '<span class="sub-item"><i class="fas fa-tasks"></i> Alternatif</span>'); ?></li>
-							<li><?= anchor('Perbandingan/banding', '<span class="sub-item"><i class="fas fa-tasks"></i> Banding</span>'); ?></li>
-							<li><?= anchor('Perbandingan/hasil', '<span class="sub-item"><i class="fas fa-tasks"></i> Hasil</span>'); ?></li>
+							<li><?= anchor('Perbandingan/banding', '<span class="sub-item"><i class="fas fa-tasks"></i> Banding Kriteria & Subkriteria </span>'); ?></li>
+							<li><?= anchor('Perbandingan/banding_parameter', '<span class="sub-item"><i class="fas fa-tasks"></i> Banding Skala Nilai </span>'); ?></li>
+
 						</ul>
 					</div>
+				</li>
+
+				<li <?php if ($page == "hasil" || $page == "Hasil") {
+						echo 'class="nav-item active" ';
+					} else {
+						echo 'class="nav-item" ';
+					} ?>>
+					<?= anchor('Perbandingan/hasil', '<i class="fas fa-tasks"></i><p>Hasil</p>'); ?>
 				</li>
 
 			</ul>

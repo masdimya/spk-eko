@@ -118,6 +118,19 @@ class Perbandingan extends CI_Controller
 		
 	}
 
+	function simpanPrioritasKriteria()
+    {
+		
+		$prioritas=$this->input->post('pri-b');
+
+
+		foreach ($prioritas as $i => $item) {
+			$this->db->update('kriteria',array('prioritas'=>$item),array('id_kriteria'=>$i));
+		}
+		echo json_encode("dd");
+
+	}
+
 	function simpanPrioritasSkala($id)
     {
 		
@@ -253,7 +266,9 @@ class Perbandingan extends CI_Controller
 
 	function hasil()
 	{
-		$this->template->load('template/backend/dashboard', 'perbandingan/prosesview');
+		$data['dAlternatif']=$this->mod_pro->hasilPerhitungan();
+		
+		$this->template->load('template/backend/dashboard', 'perbandingan/prosesview',$data);
         
 	}
 
@@ -261,16 +276,21 @@ class Perbandingan extends CI_Controller
 
 	function proseshitung()
 	{
-		$this->mod_pro->proseshitung();		
-		if($this->mod_pro->proseshitung()==TRUE)
+		$kkm = 0.189684485;
+		$data = $this->mod_pro->proseshitung($kkm);		
+		if($data)
 		{
-			//set_header_message('success','Proses Beasiswa','Beasiswa telah diproses');
-			//redirect(base_url(akses().'/beasiswa/beasiswa').'?id='.$id);
+			foreach ($data as $user) {
+				$this->db->update('alternatif',
+											   array('total'  =>$user->total,
+													 'status' =>$user->status),
+											   array('id_pemain' =>$user->id_pemain ));
+			}
 			echo json_encode(array('status'=>'ok'));
 		}else{
 			//set_header_message('danger','Proses Beasiswa','Beasiswa gagal diproses');
 			//redirect(base_url(akses().'/beasiswa/beasiswa'));
-			echo json_encode(array('status'=>'no'));
+			echo json_encode(array('status'=>'Error ☹'));
 		}	
 	}
 

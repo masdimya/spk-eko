@@ -71,6 +71,19 @@ $("#formentri").submit(function(e){
 	});
 });
 
+$("#prioritasKriteria").submit(function(e){
+	e.preventDefault();
+	$.ajax({
+		type:'post',
+		dataType:'json',
+		url:"<?=base_url();?>Perbandingan/simpanPrioritasKriteria",
+		data:$(this).serialize(),
+		success:function(x){
+			console.log(x);
+		},
+	});
+});
+
 $(".inputnumber").each(function(){
 	$(this).change(function(){		
 		hitung();
@@ -329,7 +342,7 @@ echo form_open('#',array('class'=>'form-horizontal','id'=>'formentri'));
 	<!-- <a href="javascript:;" onclick="hitung();" class="btn btn-primary">Hitung</a>  -->
 	<a href="javascript:;" onclick="showmatrix();" class="btn btn-info">Lihat Matriks</a>	
 	<a href="javascript:;" onclick="showsubkriteria();" class="btn btn-info">Lihat Sub Kriteria</a>
-	<button type="submit" name="submit" class="btn btn-success">Simpan Kriteria</button>	
+	<button type="submit" name="submit" class="btn btn-success">Simpan Nilai Kriteria</button>	
 </div>
 <?php
 echo form_close();
@@ -338,6 +351,9 @@ echo form_close();
 <br><br><br>
 <div id="matrikdiv" class="col-md-12" style="display: none">
 
+<?php
+echo form_open('#',array('class'=>'form-horizontal','id'=>'prioritasKriteria'));
+?>
 <div class="table-responsive">
 <table class="table table-bordered">
 <thead>
@@ -371,13 +387,24 @@ echo form_close();
 			echo '<td><input type="text" id="mn-k'.$noUtama2.'b'.$noSub2.'" class="form-control" value="0" readonly=""/></td>';
 		}
 		echo '<td><input type="text" class="form-control" id="jml-b'.$noUtama2.'" value="0" readonly=""/></td>';
-		echo '<td><input type="text" class="form-control" id="pri-b'.$noUtama2.'" value="0" readonly=""/></td>';
+		echo '<td>
+				  <input type="hidden" name="id_kriteria[]" value="'.$k2.'">
+				  <input type="text" class="form-control" id="pri-b'.$noUtama2.'" name="pri-b['.$k2.']" value="0" readonly=""/>
+			</td>';
 		echo '</tr>';
 	}
 	?>	
 </tbody>
 </table>
 </div>
+<div class="pull-left">
+	<button type="submit" name="submit" class="btn btn-success">Simpan Nilai Prioritas Kriteria</button>	
+</div>
+
+
+<?php
+echo form_close();
+?>
 
 <div class="table-responsive">
 <table class="table table-bordered">

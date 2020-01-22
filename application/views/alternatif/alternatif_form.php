@@ -28,16 +28,16 @@
                         <div class="row">
 							<?= form_open('Alternatif/create'); ?>
 							<div class="form-group required">
-								<label class="col-sm-2 control-label" for="">Nama Perawat</label>
+								<label class="col-sm-2 control-label" for="">Nama Pemain</label>
 								<div class="col-md-10">
-									<select name="id_perawat" class="form-control">
+									<select name="id_pemain" class="form-control">
 										<?php 
 										if (!empty($sekolah)) {
 											foreach ($sekolah as $s) {
 										?>
 										<option value='<?php echo $s->id_pemain ?>'><?php echo $s->nama_pemain ?></option>
 										<?php }}else{ ?>
-										<option class="form-control"> Semua Nama Perawat sudah terdaftar</option>
+										<option class="form-control"> Semua Nama Pemain sudah terdaftar</option>
 										<?php } ?>
 									</select>
 								</div>
